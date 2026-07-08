@@ -1,0 +1,71 @@
+/* todo-list */
+body {background-color: #f5f5f5;}
+#wrap{
+    width: 402px; min-height: 874px; /* min>허그처럼 늘어나게 해줌 */
+    background-color: #fff;
+    margin: 0 auto; /* 가운데로 */
+    position:relative; /* 1. 글쓰기 버튼+popbg를 고정하기 위한 부모 위치 */
+}
+/* ----------------------------------------header */
+#wrap header {background-color: rgb(255, 178, 176);}
+#wrap header .top {
+    background-color: rgb(255, 252, 176);
+    display: flex;
+    flex-flow: row nowrap; /* 메인축, 줄바꿈 설정 */
+    justify-content: space-between; /* 메인축 정렬, 양끝배치 */
+    /* flex사용기준 : 정렬하고 싶은 대상을 가진 부모 */
+    /* 정렬대상 : 왼쪽 h1, 오른쪽 div.right, 부모.top */
+    padding: 10px 0;
+}
+#wrap header .top .right {
+    display: flex; /* 검색a, 메뉴a 정렬 위해 부모입력 */
+    flex-flow: row nowrap; /* 검색, 메뉴 옆으로 줄바꿈x */
+    gap: 8pxs;/* 검색과 메뉴 사이의 여백 */
+}
+#wrap header nav {
+    display: flex;
+    flex-flow: row nowrap;
+    gap:12px;
+    padding: 8px 0;
+}
+/* ----------------------------------------main */
+#wrap main {padding: 50px 15px 0;}
+#wrap main .todo_list {}
+#wrap main .todo_list li {
+    display: flex; flex-flow: row nowrap; /* 날짜와 내용 정렬 */
+    gap: 20px; /* 사이에 간격주기 */
+    border-bottom: 1px solid #222; /* 하단에 테두리 주기 */
+    padding: 10px 0;/* 상하 10px 패딩 좌우 0 */
+}
+#wrap main #write_btn {
+    background-color: deeppink;
+    width: 42px; height: 42px;
+    position : absolute; /* 고정할 대상 / 부모 wrap을 기준으로 상대적으로 움직인다는 자식설정*/
+    right: 50px; bottom: 50px; /* 부모 위치에서 가까운 방향 설정 */
+}
+#wrap main #write_btn img {width: 100%;}
+/* ----------------------------------------popoup */
+#wrap main .write_popup {
+    background-color: #fff;
+    position: absolute;
+    width: 311px; height: 226px;
+    left: 11%; top: 35%;
+    z-index: 60;/* 단위가 절대 안 들어감 (순서라) */
+    padding: 20px;
+}
+#wrap main .write_popup .user_write {width: 100%;}
+#wrap main .write_popup .write_btn2 {
+    background-color: crimson;
+    width: 46px; height: 46px;
+    position: absolute;
+    right: 20px; bottom: 20px;
+}
+#wrap main .write_popup .write_btn2 img {width: 100%;}
+#wrap main .popup_bg {
+    background-color: rgba(0,0,0,0.25);
+    /* div(block) 기본 크기 :w100%, h(max-content) */
+    position: absolute; /* 가로 세로 모두 입력 필수 */
+    width: 100%; height: 100%;
+    left: 0; top: 0;
+    z-index: 50;
+}
