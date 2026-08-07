@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>스와이퍼 활용-2</title>
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <!-- swiper 필수 css cdn -->
+    <link rel="stylesheet" href="http://unpkg.com/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="http://unpkg.com/swiper/swiper-bundle.min.css">
+    <!-- swiper 필수 JS cdn 연결 -->
+    <script src="http://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="http://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="../styles/reset.css">
+    <style>
+        /* 연습용 내부 스타일시트 위치 */
+        /* swiper 내장 CSS -swiper 플러그인에 기본 내장된 css는 디자인 시 사용금지 */
+        /* swiper > overflow:hidden; position:relative; */
+        /* swiper-wrapper > position:relative; width:max-content; transform; */
+        /* swiper-slide > position:relative; (가로크기금지) */
+        /* 트립닷컴 클론디자인 */
+        .trip_recommend {width: 1250px; margin: 0 auto;} 
+        .trip_recommend .title {}
+        .trip_recommend .title h2 {}
+        .trip_recommend .title .more {}
+        .trip_recommend .recommend_slide {}
+        .trip_recommend .recommend_slide .swiper-wrapper {}
+        /* ------------------------------------------------------trip별 */
+        .trip_recommend .recommend_slide .swiper-wrapper .trip1 {}
+        .trip_recommend .recommend_slide .swiper-wrapper .trip2 {}
+        .trip_recommend .recommend_slide .swiper-wrapper .trip3 {}
+        .trip_recommend .recommend_slide .swiper-wrapper .trip4 {}
+        .trip_recommend .recommend_slide .swiper-wrapper .trip5 {}
+        .trip_recommend .recommend_slide .swiper-wrapper .trip6 {}
+        .trip_recommend .recommend_slide .swiper-wrapper .trip7 {}
+        .trip_recommend .recommend_slide .swiper-wrapper .trip8 {}
+        /* ----------------------------------------------------------swiper-slide내부 */
+        .trip_recommend .recommend_slide .swiper-wrapper .swiper-slide {}
+        .trip_recommend .recommend_slide .swiper-wrapper .swiper-slide .container {
+            display: flex; flex-flow: column nowrap; height: 400px;
+            background-position: center; background-size: cover;
+            background-image: url(https://ak-d.tripcdn.com/images/1lo3m12000s5h6fkwBBAD_W_960_0_R5_Q60.webp?proc=source/trip);
+            justify-content: space-between; padding: 15px;
+        }
+        /* ------------------------------------------------------------------------베스트상품 */
+        .trip_recommend .recommend_slide .swiper-wrapper .swiper-slide .container .best_keyword {}
+        /* ------------------------------------------------------------------------여행지 키워드, 정보 */
+        .trip_recommend .recommend_slide .swiper-wrapper .swiper-slide .container .info {}
+        .trip_recommend .recommend_slide .swiper-wrapper .swiper-slide .container .info  {}
+        .trip_recommend .recommend_slide .swiper-wrapper .swiper-slide .container .info .keyword_group {}
+        .trip_recommend .recommend_slide .swiper-wrapper .swiper-slide .container .info .keyword_group {}
+        .trip_recommend .recommend_slide .swiper-wrapper .swiper-slide .container .info .keyword_group span {}
+        .trip_recommend .recommend_slide .swiper-wrapper .swiper-slide .container .info .keyword_group span img {}
+        .trip_recommend .recommend_slide .swiper-wrapper .swiper-slide .container .info .travel_name {}
+        .trip_recommend .recommend_slide .swiper-wrapper .swiper-slide .container .info .review_score {}
+        .trip_recommend .recommend_slide .swiper-wrapper .swiper-slide .container .info .review_score .score {}
+        .trip_recommend .recommend_slide .swiper-wrapper .swiper-slide .container .info .review_score .review {}
+        /* -----------------------------------------------------------------------관심상품(하트) */
+        .trip_recommend .recommend_slide .swiper-wrapper .swiper-slide .wish_top {
+            position: absolute; right: 15px; top: 15px;
+        }
+        /* 트립닷컴 클론디자인(연습) */
+        .trip_hotel1 {width: 1250px; margin: 0 auto;}
+        .trip_hotel1 .title {
+            display: flex; justify-content: space-between;
+        }
+        .trip_hotel1 .title h2 {}
+        .trip_hotel1 .title .hotel_more {}
+        .trip_hotel1 .all {position: relative;}
+        .trip_hotel1 .hotel_recom_prev {transform: translateX(-100px);}
+        .trip_hotel1 .hotel_recom_next {transform: translateX(100px);}
+        .trip_hotel1 .hotel_recom_page {transform: translateY(0px);}
+        .trip_hotel1 .hotel_recom_scroll {transform: translateY(50px);}
+        .trip_hotel1 .hotel_recommend_slide {}
+        .trip_hotel1 .hotel_recommend_slide .swiper-wrapper {}
+        .trip_hotel1 .hotel_recommend_slide .swiper-wrapper .swiper-slide {
+            border-radius: 15px; overflow: hidden; border: 0.5px solid #222; height: 400px;
+        }
+        .trip_hotel1 .hotel_recommend_slide .swiper-wrapper .swiper-slide .container {}
+        .trip_hotel1 .hotel_recommend_slide .swiper-wrapper .swiper-slide .container .photo {
+            background-image: url(https://ak-d.tripcdn.com/images/220k180000014btki182A_W_1280_853_R5.webp?proc=watermark/image_trip1,l_ne,x_16,y_16,w_67,h_16;digimark/t_image,logo_tripbinary;ignoredefaultwm,1A8F);
+            height: 200px; background-position: center; background-size: cover;
+        }
+        .trip_hotel1 .hotel_recommend_slide .swiper-wrapper .swiper-slide .container .info {
+            padding: 10px; height: 200px;
+            display: flex; flex-flow: column nowrap; justify-content: space-between;
+        }
+        .trip_hotel1 .hotel_recommend_slide .swiper-wrapper .swiper-slide .container .info .details {
+            display: flex; flex-flow: column nowrap; gap: 10px;
+        }
+        .trip_hotel1 .hotel_recommend_slide .swiper-wrapper .swiper-slide .container .info .details .area {}
+        .trip_hotel1 .hotel_recommend_slide .swiper-wrapper .swiper-slide .container .info .details h3 {}
+        .trip_hotel1 .hotel_recommend_slide .swiper-wrapper .swiper-slide .container .info .details h3 .name {
+            font-size: 1.25rem;
+        }
+        .trip_hotel1 .hotel_recommend_slide .swiper-wrapper .swiper-slide .container .info .details h3 .level {}
+        .trip_hotel1 .hotel_recommend_slide .swiper-wrapper .swiper-slide .container .info .details h3 .level img {}
+        .trip_hotel1 .hotel_recommend_slide .swiper-wrapper .swiper-slide .container .info .details .review_score {}
+        .trip_hotel1 .hotel_recommend_slide .swiper-wrapper .swiper-slide .container .info .details .review_score .score {
+            background-color: blue; color: white; padding: 5px; border-radius: 20px 0px 10px 20px;
+            margin-right: 5px;
+        }
+        .trip_hotel1 .hotel_recommend_slide .swiper-wrapper .swiper-slide .container .info .details .review_score .review {}
+        .trip_hotel1 .hotel_recommend_slide .swiper-wrapper .swiper-slide .container .info .low_price {}
+        .trip_hotel1 .hotel_recommend_slide .swiper-wrapper .swiper-slide .wish_hotel {
+            position: absolute; right: 15px; top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <section class="trip_recommend">
+        <div class="title">
+            <h2>이런 곳은 어떠세요?</h2>
+            <a href="#" class="more">더 보기</a>
+        </div>
+        <div class="swiper recommend_slide">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide trip1">
+                    <a href="#" class="container">
+                        <p class="best_keyword"><img src="#" alt=""></p>
+                        <div class="info">
+                            <p class="keyword_group">
+                                <span>도쿄</span>
+                                <span><img src="#" alt="인기도">9.4</span>
+                            </p>
+                            <h3 class="travel_name">도쿄 디즈니랜드</h3>
+                            <p class="review_score">
+                                <span class="score">4.5/5</span>
+                                <span class="review">리뷰 15,574개</span>
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#" class="wish_top"><img src="#" alt="관심여행지등록"></a>
+                </div><!-- e:swiper-slide -->
+                <div class="swiper-slide trip2">
+                    <a href="#" class="container">
+                        <p class="best_keyword"><img src="#" alt=""></p>
+                        <div class="info">
+                            <p class="keyword_group">
+                                <span>도쿄</span>
+                                <span><img src="#" alt="인기도">9.4</span>
+                            </p>
+                            <h3 class="travel_name">도쿄 디즈니랜드</h3>
+                            <p class="review_score">
+                                <span class="score">4.5/5</span>
+                                <span class="review">리뷰 15,574개</span>
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#" class="wish_top"><img src="#" alt="관심여행지등록"></a>
+                </div><!-- e:swiper-slide -->
+                <div class="swiper-slide trip3">
+                    <a href="#" class="container">
+                        <p class="best_keyword"><img src="#" alt=""></p>
+                        <div class="info">
+                            <p class="keyword_group">
+                                <span>도쿄</span>
+                                <span><img src="#" alt="인기도">9.4</span>
+                            </p>
+                            <h3 class="travel_name">도쿄 디즈니랜드</h3>
+                            <p class="review_score">
+                                <span class="score">4.5/5</span>
+                                <span class="review">리뷰 15,574개</span>
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#" class="wish_top"><img src="#" alt="관심여행지등록"></a>
+                </div><!-- e:swiper-slide -->
+                <div class="swiper-slide trip4">
+                    <a href="#" class="container">
+                        <p class="best_keyword"><img src="#" alt=""></p>
+                        <div class="info">
+                            <p class="keyword_group">
+                                <span>도쿄</span>
+                                <span><img src="#" alt="인기도">9.4</span>
+                            </p>
+                            <h3 class="travel_name">도쿄 디즈니랜드</h3>
+                            <p class="review_score">
+                                <span class="score">4.5/5</span>
+                                <span class="review">리뷰 15,574개</span>
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#" class="wish_top"><img src="#" alt="관심여행지등록"></a>
+                </div><!-- e:swiper-slide -->
+                <div class="swiper-slide trip5">
+                    <a href="#" class="container">
+                        <p class="best_keyword"><img src="#" alt=""></p>
+                        <div class="info">
+                            <p class="keyword_group">
+                                <span>도쿄</span>
+                                <span><img src="#" alt="인기도">9.4</span>
+                            </p>
+                            <h3 class="travel_name">도쿄 디즈니랜드</h3>
+                            <p class="review_score">
+                                <span class="score">4.5/5</span>
+                                <span class="review">리뷰 15,574개</span>
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#" class="wish_top"><img src="#" alt="관심여행지등록"></a>
+                </div><!-- e:swiper-slide -->
+                <div class="swiper-slide trip6">
+                    <a href="#" class="container">
+                        <p class="best_keyword"><img src="#" alt=""></p>
+                        <div class="info">
+                            <p class="keyword_group">
+                                <span>도쿄</span>
+                                <span><img src="#" alt="인기도">9.4</span>
+                            </p>
+                            <h3 class="travel_name">도쿄 디즈니랜드</h3>
+                            <p class="review_score">
+                                <span class="score">4.5/5</span>
+                                <span class="review">리뷰 15,574개</span>
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#" class="wish_top"><img src="#" alt="관심여행지등록"></a>
+                </div><!-- e:swiper-slide -->
+                <div class="swiper-slide trip7">
+                    <a href="#" class="container">
+                        <p class="best_keyword"><img src="#" alt=""></p>
+                        <div class="info">
+                            <p class="keyword_group">
+                                <span>도쿄</span>
+                                <span><img src="#" alt="인기도">9.4</span>
+                            </p>
+                            <h3 class="travel_name">도쿄 디즈니랜드</h3>
+                            <p class="review_score">
+                                <span class="score">4.5/5</span>
+                                <span class="review">리뷰 15,574개</span>
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#" class="wish_top"><img src="#" alt="관심여행지등록"></a>
+                </div><!-- e:swiper-slide -->
+                <div class="swiper-slide trip8">
+                    <a href="#" class="container">
+                        <p class="best_keyword"><img src="#" alt=""></p>
+                        <div class="info">
+                            <p class="keyword_group">
+                                <span>도쿄</span>
+                                <span><img src="#" alt="인기도">9.4</span>
+                            </p>
+                            <h3 class="travel_name">도쿄 디즈니랜드</h3>
+                            <p class="review_score">
+                                <span class="score">4.5/5</span>
+                                <span class="review">리뷰 15,574개</span>
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#" class="wish_top"><img src="#" alt="관심여행지등록"></a>
+                </div><!-- e:swiper-slide -->
+            </div>
+        </div>
+    </section>
+    <section class="trip_hotel1">
+        <div class="title">
+            <h2>도쿄의 엄선된 호텔에서 편안한 휴식을 즐겨보세요</h2>
+            <a href="#" class="hotel_more">더 보기</a>
+        </div>
+        <div class="all">
+            <div class="swiper hotel_recommend_slide">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide hotel1">
+                        <a href="#" class="container">
+                            <p class="photo"><!-- bg --></p>
+                            <div class="info">
+                                <div class="details">
+                                    <p class="area">도쿄</p>
+                                    <h3>
+                                        <span class="name">인터컨티넨탈 도쿄 베이</span>
+                                        <span class="level"><img src="" alt="등급"></span>
+                                    </h3>
+                                    <p class="review_score">
+                                        <span class="score">9.2/10</span>
+                                        <span class="review">리뷰 1,450개</span>
+                                    </p>
+                                </div>
+                                <p class="low_price">최저가 399,360개</p>
+                            </div>
+                        </a>
+                        <a href="#" class="wish_hotel"><img src="#" alt="관심호텔등록"></a>
+                    </div>
+                    <div class="swiper-slide hotel2">
+                        <a href="#" class="container">
+                            <p class="photo"><!-- bg --></p>
+                            <div class="info">
+                                <div class="details">
+                                    <p class="area">도쿄</p>
+                                    <h3>
+                                        <span class="name">인터컨티넨탈 도쿄 베이</span>
+                                        <span class="level"><img src="" alt="등급"></span>
+                                    </h3>
+                                    <p class="review_score">
+                                        <span class="score">9.2/10</span>
+                                        <span class="review">리뷰 1,450개</span>
+                                    </p>
+                                </div>
+                                <p class="low_price">최저가 399,360개</p>
+                            </div>
+                        </a>
+                        <a href="#" class="wish_hotel"><img src="#" alt="관심호텔등록"></a>
+                    </div>
+                    <div class="swiper-slide hotel3">
+                        <a href="#" class="container">
+                            <p class="photo"><!-- bg --></p>
+                            <div class="info">
+                                <div class="details">
+                                    <p class="area">도쿄</p>
+                                    <h3>
+                                        <span class="name">인터컨티넨탈 도쿄 베이</span>
+                                        <span class="level"><img src="" alt="등급"></span>
+                                    </h3>
+                                    <p class="review_score">
+                                        <span class="score">9.2/10</span>
+                                        <span class="review">리뷰 1,450개</span>
+                                    </p>
+                                </div>
+                                <p class="low_price">최저가 399,360개</p>
+                            </div>
+                        </a>
+                        <a href="#" class="wish_hotel"><img src="#" alt="관심호텔등록"></a>
+                    </div>
+                    <div class="swiper-slide hotel4">
+                        <a href="#" class="container">
+                            <p class="photo"><!-- bg --></p>
+                            <div class="info">
+                                <div class="details">
+                                    <p class="area">도쿄</p>
+                                    <h3>
+                                        <span class="name">인터컨티넨탈 도쿄 베이</span>
+                                        <span class="level"><img src="" alt="등급"></span>
+                                    </h3>
+                                    <p class="review_score">
+                                        <span class="score">9.2/10</span>
+                                        <span class="review">리뷰 1,450개</span>
+                                    </p>
+                                </div>
+                                <p class="low_price">최저가 399,360개</p>
+                            </div>
+                        </a>
+                        <a href="#" class="wish_hotel"><img src="#" alt="관심호텔등록"></a>
+                    </div>
+                    <div class="swiper-slide hotel5">
+                        <a href="#" class="container">
+                            <p class="photo"><!-- bg --></p>
+                            <div class="info">
+                                <div class="details">
+                                    <p class="area">도쿄</p>
+                                    <h3>
+                                        <span class="name">인터컨티넨탈 도쿄 베이</span>
+                                        <span class="level"><img src="" alt="등급"></span>
+                                    </h3>
+                                    <p class="review_score">
+                                        <span class="score">9.2/10</span>
+                                        <span class="review">리뷰 1,450개</span>
+                                    </p>
+                                </div>
+                                <p class="low_price">최저가 399,360개</p>
+                            </div>
+                        </a>
+                        <a href="#" class="wish_hotel"><img src="#" alt="관심호텔등록"></a>
+                    </div>
+                    <div class="swiper-slide hotel6">
+                        <a href="#" class="container">
+                            <p class="photo"><!-- bg --></p>
+                            <div class="info">
+                                <div class="details">
+                                    <p class="area">도쿄</p>
+                                    <h3>
+                                        <span class="name">인터컨티넨탈 도쿄 베이</span>
+                                        <span class="level"><img src="" alt="등급"></span>
+                                    </h3>
+                                    <p class="review_score">
+                                        <span class="score">9.2/10</span>
+                                        <span class="review">리뷰 1,450개</span>
+                                    </p>
+                                </div>
+                                <p class="low_price">최저가 399,360개</p>
+                            </div>
+                        </a>
+                        <a href="#" class="wish_hotel"><img src="#" alt="관심호텔등록"></a>
+                    </div>
+                    <div class="swiper-slide hotel7">
+                        <a href="#" class="container">
+                            <p class="photo"><!-- bg --></p>
+                            <div class="info">
+                                <div class="details">
+                                    <p class="area">도쿄</p>
+                                    <h3>
+                                        <span class="name">인터컨티넨탈 도쿄 베이</span>
+                                        <span class="level"><img src="" alt="등급"></span>
+                                    </h3>
+                                    <p class="review_score">
+                                        <span class="score">9.2/10</span>
+                                        <span class="review">리뷰 1,450개</span>
+                                    </p>
+                                </div>
+                                <p class="low_price">최저가 399,360개</p>
+                            </div>
+                        </a>
+                        <a href="#" class="wish_hotel"><img src="#" alt="관심호텔등록"></a>
+                    </div>
+                    <div class="swiper-slide hotel7">
+                        <a href="#" class="container">
+                            <p class="photo"><!-- bg --></p>
+                            <div class="info">
+                                <div class="details">
+                                    <p class="area">도쿄</p>
+                                    <h3>
+                                        <span class="name">인터컨티넨탈 도쿄 베이</span>
+                                        <span class="level"><img src="" alt="등급"></span>
+                                    </h3>
+                                    <p class="review_score">
+                                        <span class="score">9.2/10</span>
+                                        <span class="review">리뷰 1,450개</span>
+                                    </p>
+                                </div>
+                                <p class="low_price">최저가 399,360개</p>
+                            </div>
+                        </a>
+                        <a href="#" class="wish_hotel"><img src="#" alt="관심호텔등록"></a>
+                    </div>
+                </div>
+            </div>
+            <!-- 슬라이드 바깥 디자인 위치 -->
+            <div class="swiper-button-prev hotel_recom_prev"></div>
+            <div class="swiper-button-next hotel_recom_next"></div>
+            <div class="swiper-pagination hotel_recom_page"></div>
+            <div class="swiper-scrollbar hotel_recom_scroll"></div>
+        </div>
+    </section>
+    <script>
+        const tripSlide1 = new Swiper('.recommend_slide',{
+            slidesPerView:4,
+            spaceBetween:20,
+        })
+
+        const tripSlide = new Swiper('.hotel_recommend_slide',{
+            slidesPerView:4,
+            spaceBetween:20,
+            navigation: {
+                nextEl: '.hotel_recom_next',
+                prevEl: '.hotel_recom_prev',
+            },
+            pagination: {
+                el: '.hotel_recom_page',
+                //type:'bullets'(기본)
+                //type:'fraction' (숫자)
+                //type:'progressbar' (바)
+                type:'progressbar',
+            },
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+        })
+    </script>
+</body>
+</html>
